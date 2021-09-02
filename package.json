@@ -1,0 +1,73 @@
+{
+  "name": "node-vue3-typescript",
+  "version": "1.0.0",
+  "description": "Template for fully integrated typescript node and vue3 project.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tebra/node-vue3-typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tebra/node-vue3-typescript/issues"
+  },
+  "homepage": "https://github.com/Tebra/node-vue3-typescript#readme",
+  "scripts": {
+    "serve:backend": "nodemon",
+    "serve:frontend": "vue-cli-service serve",
+    "inspect": "vue-cli-service inspect",
+    "checkout": "tsc -p ./client/tsconfig.json",
+    "serve": "npm-run-all --parallel serve:backend serve:frontend",
+    "build:backend": "rimraf ./backend/build && tsc",
+    "build:frontend": "vue-cli-service build --dest ./build",
+    "build": "npm-run-all build:backend build:frontend",
+    "start": "yarn build && node ./build/server.js",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "register-service-worker": "^1.7.1",
+    "vue": "^3.0.0",
+    "vue-class-component": "^8.0.0-0",
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.0-0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/express": "^4.17.13",
+    "@types/mocha": "^5.2.4",
+    "@types/node": "^16.7.4",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-pwa": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-plugin-unit-mocha": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "@vue/test-utils": "^2.0.0-0",
+    "chai": "^4.1.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.0.0",
+    "node-sass": "^4.12.0",
+    "nodemon": "^2.0.12",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "sass-loader": "^8.0.2",
+    "ts-node": "^10.2.1",
+    "tsconfig-paths-webpack-plugin": "^3.5.1",
+    "typescript": "~4.1.5"
+  }
+}
