@@ -2,14 +2,18 @@
   "name": "node-vue3-typescript",
   "version": "1.0.0",
   "description": "Template for fully integrated typescript node and vue3 project.",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Tebra/node-vue3-typescript.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "Node",
+    "Vue",
+    "Typescript",
+    "REST"
+  ],
+  "author": "Rijad Zuzo",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Tebra/node-vue3-typescript/issues"
   },
@@ -17,7 +21,6 @@
   "scripts": {
     "serve:backend": "nodemon",
     "serve:frontend": "vue-cli-service serve --open",
-    "inspect": "vue-cli-service inspect",
     "checkout": "tsc -p ./client/tsconfig.json",
     "serve": "npm-run-all --parallel serve:backend serve:frontend",
     "build:backend": "rimraf ./build && tsc",
@@ -31,14 +34,17 @@
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-winston": "^4.2.0",
     "register-service-worker": "^1.7.1",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vuex": "^4.0.0-0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/mocha": "^5.2.4",
     "@types/node": "^16.7.4",
@@ -63,7 +69,7 @@
     "node-sass": "^4.12.0",
     "nodemon": "^2.0.12",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.2.1",
+    "prettier": "2.3.2",
     "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2",
     "ts-node": "^10.2.1",
