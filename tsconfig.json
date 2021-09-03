@@ -7,7 +7,7 @@
     ],
     "allowJs": true,
     "outDir": "./build",
-    "rootDir": ".",
+    "rootDir": "./api",
     "baseUrl": ".",
     "strict": true,
     "noImplicitAny": true,
@@ -18,11 +18,11 @@
     ]
   },
   "include": [
-    "./**/*"
+    "./api/**/*"
   ],
   "exclude": [
     "node_modules",
     "client",
-    "tests"
+    "api/tests"
   ]
 }
