@@ -135,3 +135,4 @@ dist
 
 # TS build output
 build/
+client/components/mock/

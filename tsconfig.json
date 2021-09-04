@@ -16,5 +16,5 @@
     "typeRoots": ["./node_modules/@types"]
   },
   "include": ["./api/**/*"],
-  "exclude": ["node_modules", "client"]
+  "exclude": ["node_modules", "client", "./api/tests/**/*"]
 }
