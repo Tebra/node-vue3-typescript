@@ -6,5 +6,5 @@
   "ignore": [
     "./client"
   ],
-  "exec": "ts-node ./api/server.ts"
+  "exec": "ts-node -r dotenv/config ./api/server.ts"
 }

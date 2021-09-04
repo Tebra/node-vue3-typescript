@@ -1,12 +1,15 @@
-//import dotenv from "dotenv";
-import express from "express";
-import path from "path";
-import * as http from "http";
-import * as winston from "winston";
-import * as expressWinston from "express-winston";
-import cors from "cors";
-import { CommonRoutesConfig } from "./common/common.routes.config";
-import { UsersRoutes } from "./users/routes/users.routes.config";
+import * as http from 'http';
+import * as winston from 'winston';
+import * as expressWinston from 'express-winston';
+import cors from 'cors';
+import path from 'path';
+import compression from 'compression';
+import express from 'express';
+import { hidePoweredBy, noSniff, xssFilter } from 'helmet';
+import { CommonRoutesConfig } from './common/common.routes.config';
+import { UsersRoutes } from './modules/user/user.routes.config';
+import { initializedSequelize } from './infrastructure/infrastructure.sequelize';
+import dbSeed from './infrastructure/infrastructure.seed';
 
 class Server {
   app: express.Application;
@@ -22,15 +25,17 @@ class Server {
     this.server = http.createServer(this.app);
   }
 
-  setupDotEnv() {
-    // TODO: Setup dotenv environment configs
-    // initialize configuration
-    //dotenv.config();
-  }
-
   setupExpress() {
+    this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     this.app.use(cors());
+    this.app.use(compression());
+  }
+
+  setupHelmet() {
+    this.app.use(hidePoweredBy());
+    this.app.use(noSniff());
+    this.app.use(xssFilter());
   }
 
   setupWinstonLogger() {
@@ -43,9 +48,9 @@ class Server {
       ),
     };
 
-    /*if (!process.env.DEBUG) {
-            loggerOptions.meta = false; // when not debugging, make terse
-        }*/
+    if (!process.env.DEBUG) {
+      loggerOptions.meta = false; // when not debugging, make terse
+    }
 
     this.app.use(expressWinston.logger(loggerOptions));
   }
@@ -55,17 +60,23 @@ class Server {
   }
 
   setupFrontendServing() {
-    const frontendPath = path.join(__dirname, "public");
+    const frontendPath = path.join(__dirname, 'public');
     // Configure Express to serve static files in the public folder
     this.app.use(express.static(frontendPath));
 
     // History mode routing fix
-    this.app.all("*", (_req, res) => {
+    this.app.all('*', (_req, res) => {
       try {
-        res.sendFile(frontendPath + "/index.html");
+        res.sendFile(frontendPath + '/index.html');
       } catch (error) {
-        res.json({ success: false, message: "Something went wrong" });
+        res.json({ success: false, message: 'Something went wrong' });
       }
+    });
+  }
+
+  setupDatabase() {
+    initializedSequelize.sync().then(async () => {
+      console.log('Connection established');
     });
   }
 
@@ -77,11 +88,15 @@ class Server {
 
     this.server.listen(this.port, () => {
       this.routes.forEach((route: CommonRoutesConfig) => {
-        console.log("Routes setup", route.name);
+        console.log('Routes setup', route.name);
       });
       console.log(`Server running at http://localhost:${this.port}`);
     });
   }
 }
+
+/* dbSeed().then(new Server().start, (error) =>
+  console.log('An error occured while populating the database', error)
+);*/
 
 new Server().start();
