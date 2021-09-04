@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git+https://github.com/Tebra/node-vue3-typescript.git"
   },
+  "engines": {
+    "node": "12.x"
+  },
   "keywords": [
     "Node",
     "Vue",

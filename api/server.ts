@@ -75,9 +75,9 @@ class Server {
   }
 
   setupDatabase() {
-    initializedSequelize.sync().then(async () => {
+    /*initializedSequelize.sync().then(async () => {
       console.log('Connection established');
-    });
+    });*/
   }
 
   start() {
