@@ -32,7 +32,7 @@
     "format:api": "prettier --write ./api",
     "format:client": "prettier --write ./client",
     "format": "npm-run-all format:api format:client",
-    "start": "yarn build && node -r dotenv/config ./build/server.js",
+    "start": "node -r dotenv/config ./build/server.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
