@@ -6,15 +6,13 @@ import path from 'path';
 import compression from 'compression';
 import express from 'express';
 import { hidePoweredBy, noSniff, xssFilter } from 'helmet';
-import { CommonRoutesConfig } from './common/common.routes.config';
-import { UsersRoutes } from './modules/user/user.routes.config';
+import registerRoutes from './routes';
 import { initializedSequelize } from './infrastructure/infrastructure.sequelize';
 import dbSeed from './infrastructure/infrastructure.seed';
 
 class Server {
   app: express.Application;
   server: http.Server;
-  routes: Array<CommonRoutesConfig> = [];
 
   // port is now available to the Node.js runtime
   // as if it were an environment variable
@@ -56,7 +54,7 @@ class Server {
   }
 
   setupRoutes() {
-    this.routes.push(new UsersRoutes(this.app));
+    registerRoutes(this.app);
   }
 
   setupFrontendServing() {
@@ -87,9 +85,6 @@ class Server {
     this.setupFrontendServing();
 
     this.server.listen(this.port, () => {
-      this.routes.forEach((route: CommonRoutesConfig) => {
-        console.log('Routes setup', route.name);
-      });
       console.log(`Server running at http://localhost:${this.port}`);
     });
   }

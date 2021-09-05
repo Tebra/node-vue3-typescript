@@ -23,7 +23,7 @@
   "homepage": "https://github.com/Tebra/node-vue3-typescript#readme",
   "scripts": {
     "serve:api": "nodemon",
-    "serve:client": "vue-cli-service serve --open",
+    "serve:client": "vue-cli-service serve --port 8080 --open",
     "serve": "npm-run-all --parallel serve:api serve:client",
     "test:api": "mocha -r ts-node/register ./api/tests/**/*.ts",
     "test:client": "vue-cli-service test:unit ./client/tests/**/*.ts",
