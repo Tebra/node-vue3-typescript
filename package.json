@@ -34,7 +34,8 @@
     "format:client": "prettier --write ./client",
     "format": "npm-run-all format:api format:client",
     "start": "node -r dotenv/config ./build/server.js",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "trace": "tsc --traceResolution"
   },
   "dependencies": {
     "compression": "^1.7.4",
