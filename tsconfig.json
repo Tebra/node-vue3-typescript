@@ -15,5 +15,6 @@
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
+    "exclude": ["node_modules"]
   }
 }

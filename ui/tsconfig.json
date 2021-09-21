@@ -12,16 +12,13 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "rootDir": "./src",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "types": ["webpack-env", "mocha", "chai"],
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "paths": {
-      "@/*": [
-        "src/*.vue",
-        "src/*.ts",
-      ]
+      "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.vue"],
+  "include": ["src/**/*"],
   "exclude": ["src/tests/**/*", "node_modules"]
 }

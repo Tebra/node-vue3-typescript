@@ -1,17 +1,12 @@
 import { defineStore } from 'pinia';
-import User from '@/modules/user/user.type';
+import { User } from '@/modules/user/user.type';
 import useAxios from '@/composables/useAxios';
-
-export type UserState = {
-  users: User[];
-};
 
 export const userStore = defineStore({
   id: 'user',
-  state: () =>
-    ({
-      users: [],
-    } as UserState),
+  state: () => ({
+    users: [] as User[],
+  }),
 
   actions: {
     async loadAllUsers() {
