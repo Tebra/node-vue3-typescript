@@ -16,7 +16,7 @@ export const userStore = defineStore({
     async createUser(user: User) {
       await useAxios()
         .post('/users', user)
-        .then(() => this.users.put(user));
+        .then(() => this.users.push(user));
     },
   },
   getters: {
