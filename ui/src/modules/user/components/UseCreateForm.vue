@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <n-form :label-width="80" ref="user">
-      <n-form-item label="Name" path="user.name">
-        <n-input v-model:value="user.fullName" placeholder="Input Name" />
+    <n-form :label-width="80" :model="user">
+      <n-form-item label="Name" path="user.username">
+        <n-input v-model:value="user.username" placeholder="Input Name" />
       </n-form-item>
-      <n-form-item label="Age" path="user.username">
-        <n-input placeholder="Input Age" v-model:value="user.age" />
+      <n-form-item label="Password" path="user.password">
+        <n-input v-model:value="user.password" placeholder="Input Password" />
       </n-form-item>
       <n-form-item>
         <n-button @click="submitUserForm">Validate</n-button>
@@ -14,10 +14,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { NButton, NForm, NFormItem, NInput } from "naive-ui";
 import { ref } from "vue";
-import User from "@/modules/user/user.type";
+import { User } from "@/modules/user/user.type";
 
 export default {
   components: {
@@ -28,16 +28,18 @@ export default {
   },
 
   setup() {
-    //prettier-ignore
     const user = ref<User>({
-      username: "Test"
+      id: "",
+      username: "",
+      fullName: "",
+      email: "",
+      role: 1,
+      password: "",
     });
-    console.log("The user now", user);
-    debugger;
 
     function submitUserForm() {
-      debugger;
-      console.log("Current User", user);
+      console.log("Current User Ref:", user);
+      console.log("Current User value", user.value);
     }
 
     return {

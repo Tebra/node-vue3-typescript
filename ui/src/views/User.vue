@@ -3,7 +3,7 @@
   <user-create-form></user-create-form>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 import UserCreateForm from "@/modules/user/components/UseCreateForm.vue";
 
