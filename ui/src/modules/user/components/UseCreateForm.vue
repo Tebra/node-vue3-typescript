@@ -17,7 +17,7 @@
 <script>
 import { NButton, NForm, NFormItem, NInput } from "naive-ui";
 import { ref } from "vue";
-import User from "@/modules/user/user.model";
+import User from "@/modules/user/user.type";
 
 export default {
   components: {
@@ -28,9 +28,15 @@ export default {
   },
 
   setup() {
-    const user = ref<User>({})
+    //prettier-ignore
+    const user = ref<User>({
+      username: "Test"
+    });
+    console.log("The user now", user);
+    debugger;
 
     function submitUserForm() {
+      debugger;
       console.log("Current User", user);
     }
 

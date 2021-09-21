@@ -9,8 +9,8 @@ module.exports = {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       .use(require("tsconfig-paths-webpack-plugin"));
 
-    config.entry("app").clear().add("./client/main.ts").end();
-    config.resolve.alias.set("@", path.join(__dirname, "./client"));
+    config.entry("app").clear().add("./src/main.ts").end();
+    config.resolve.alias.set("@", path.join(__dirname, "./src"));
 
     // config for mjs modules loading
     config.module

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { User } from '@/models/user.model';
+import User from '@/modules/user/user.type';
 import useAxios from '@/composables/useAxios';
 
 export type UserState = {
