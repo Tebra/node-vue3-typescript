@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { User } from '@/modules/user/user.type';
 import useAxios from '@/composables/useAxios';
 
-export const userStore = defineStore({
+export const useUserStore = defineStore({
   id: 'user',
   state: () => ({
     users: [] as User[],

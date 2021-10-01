@@ -14,19 +14,20 @@ class UserController {
   }
 
   createUser(req: Request, res: Response) {
-    const data: any = req.body;
-    User.create(
-      new User({
-        username: data.username,
-        password: data.password, // TODO: Add hashing
-        email: data.email,
-        role: data.role,
-        name: data.name,
-      })
-    )
-      .then((user: User) => res.send(user.id))
+    const data: User = req.body;
+    const user = new User({
+      username: data.username,
+      password: data.password, // TODO: Add hashing
+      email: data.email,
+      role: data.role,
+      fullName: data.fullName,
+    });
+
+    user
+      .save()
+      .then((user) => res.status(200).json(user.id))
       .catch((err: SequelizeScopeError) => {
-        res.status(500).send({
+        res.status(500).json({
           message:
             err.message || 'Some error occurred while creating the user.',
         });
