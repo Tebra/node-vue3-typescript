@@ -11,13 +11,14 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "baseUrl": "./client",
+    "rootDir": "./src",
+    "baseUrl": "./",
     "types": ["webpack-env", "mocha", "chai"],
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "paths": {
-      "@/*": ["client/*"]
-    },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["./**/*.ts", "./**/*.vue"],
-  "exclude": ["./tests/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["src/tests/**/*", "node_modules"]
 }
