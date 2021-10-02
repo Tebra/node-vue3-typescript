@@ -1,4 +1,5 @@
 <template>
+  <h2>Create a new user</h2>
   <n-form class="form" :model="user" :label-align="formOption.labelAlignment">
     <n-form-item label="Full Name" path="user.fullName">
       <n-input v-model:value="user.fullName" placeholder="Input Full Name" />
@@ -20,7 +21,7 @@
       />
     </n-form-item>
     <n-form-item class="actions">
-      <n-button @click="submitUserForm">Save</n-button>
+      <n-button @click="submitUserForm" color="#8eafbc">Save</n-button>
     </n-form-item>
   </n-form>
 </template>

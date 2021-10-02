@@ -1,4 +1,5 @@
 <template>
+  <h2>Current users</h2>
   <n-data-table :columns="columns" :data="data"></n-data-table>
 </template>
 
@@ -35,6 +36,7 @@ const setupColumns = ({
           NButton,
           {
             size: "small",
+            color: "#e7a0a0",
             onClick: () => removeUser(row.key),
           },
           {
