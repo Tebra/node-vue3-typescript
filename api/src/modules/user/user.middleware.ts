@@ -1,6 +1,6 @@
 import express from 'express';
 
-class UsersMiddleware {
+class UserMiddleware {
   async validateRequiredUserBodyFields(
     req: express.Request,
     res: express.Response,
@@ -25,4 +25,4 @@ class UsersMiddleware {
   }
 }
 
-export default new UsersMiddleware();
+export default new UserMiddleware();

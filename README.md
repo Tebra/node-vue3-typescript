@@ -40,6 +40,6 @@ yarn start
 
 ### Resources
 
-[https://dev.to/calvintwr/build-instagram-using-typescript-node-express-and-vue-part-3-4d1n](https://dev.to/calvintwr/build-instagram-using-typescript-node-express-and-vue-part-3-4d1n)
-[https://github.com/hardmaster92/express-sequelize-ts-example](https://github.com/hardmaster92/express-sequelize-ts-example)
-[https://www.toptal.com/express-js/nodejs-typescript-rest-api-pt-1](https://www.toptal.com/express-js/nodejs-typescript-rest-api-pt-1)
+* [https://dev.to/calvintwr/build-instagram-using-typescript-node-express-and-vue-part-3-4d1n](https://dev.to/calvintwr/build-instagram-using-typescript-node-express-and-vue-part-3-4d1n)
+* [https://github.com/hardmaster92/express-sequelize-ts-example](https://github.com/hardmaster92/express-sequelize-ts-example)
+* [https://www.toptal.com/express-js/nodejs-typescript-rest-api-pt-1](https://www.toptal.com/express-js/nodejs-typescript-rest-api-pt-1)

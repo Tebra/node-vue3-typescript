@@ -17,7 +17,7 @@ class UserController {
     const data: User = req.body;
     const user = new User({
       username: data.username,
-      password: data.password, // TODO: Add hashing
+      password: data.password, // TODO: Add hashing & authentication
       email: data.email,
       role: data.role,
       fullName: data.fullName,
@@ -32,6 +32,19 @@ class UserController {
             err.message || 'Some error occurred while creating the user.',
         });
       });
+  }
+
+  deleteUser(req: Request, res: Response) {
+    const userId = req.body.id;
+    User.destroy({
+      where: {
+        id: userId,
+      },
+    }).then(() =>
+      res.status(200).json({
+        message: 'User with id ' + userId + 'removed',
+      })
+    );
   }
 }
 
