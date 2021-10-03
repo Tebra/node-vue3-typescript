@@ -1,9 +1,10 @@
 import axios, { AxiosInstance } from 'axios';
 
 export default function useAxios(newBasePath?: string): AxiosInstance {
-  const baseUrl = newBasePath || 'http://localhost:3000/api/';
+  const baseUrl =
+    newBasePath || process.env.VUE_APP_API_HOST || 'localhost:3000';
   return axios.create({
-    baseURL: baseUrl,
+    baseURL: `${baseUrl}/api/`,
     timeout: 1000,
   });
 }
