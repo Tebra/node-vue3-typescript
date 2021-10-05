@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { User } from '@/modules/user/user.type';
-import useAxios from '@/composables/useAxios';
+import useAxios from '@/common/composables/useAxios';
 
 export const useUserStore = defineStore({
   id: 'user',

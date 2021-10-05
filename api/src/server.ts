@@ -15,7 +15,7 @@ class Server {
 
   // port is now available to the Node.js runtime
   // as if it were an environment variable
-  port = process.env.PORT || 3000; //process.env.SERVER_PORT;
+  port = process.env.PORT || 3000;
 
   constructor() {
     this.app = express();
