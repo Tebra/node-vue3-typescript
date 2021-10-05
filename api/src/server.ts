@@ -8,7 +8,6 @@ import express from 'express';
 import { hidePoweredBy, noSniff, xssFilter } from 'helmet';
 import registerRoutes from './routes';
 import { initializedSequelize } from './infrastructure/infrastructure.sequelize';
-import dbSeed from './infrastructure/infrastructure.seed';
 
 class Server {
   app: express.Application;
@@ -74,7 +73,7 @@ class Server {
 
   setupDatabase() {
     initializedSequelize.sync().then(async () => {
-      console.log('Connection established');
+      console.log('Database connection established');
     });
   }
 
@@ -83,6 +82,8 @@ class Server {
     this.setupWinstonLogger();
     this.setupRoutes();
     this.setupFrontendServing();
+    this.setupHelmet();
+    this.setupDatabase();
 
     this.server.listen(this.port, () => {
       console.log(`Server running at http://localhost:${this.port}`);
