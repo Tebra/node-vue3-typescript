@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require("path");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-// const dotenv = require("dotenv");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   chainWebpack: (config) => {
@@ -22,12 +22,7 @@ module.exports = {
       .end()
       .type("javascript/auto");
 
-    /*const result = dotenv.config({
-      path: path.resolve(__dirname, "../.env"),
-    });
-
-    if (result.error) {
-      throw result.error;
-    }*/
+    let rootEnvPath = path.resolve(__dirname, "../.env");
+    config.plugin("dotenv").use(Dotenv, [{ path: rootEnvPath, expand: true }]);
   },
 };

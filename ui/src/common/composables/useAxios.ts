@@ -8,20 +8,17 @@ export default function useAxios(newBasePath?: string): AxiosInstance {
 }
 
 function getApiUrl(newBasePath?: string): string {
-  let baseUrl =
-    newBasePath || process.env.VUE_APP_API_HOST || process.env.BASE_URL;
-  let port = '';
-
-  // If basepathUrl is localhost, add specified port or default 3000
-  if (process.env.VUE_APP_API_HOST) {
-    if (baseUrl.indexOf('http') === -1) {
-      baseUrl = `http://${baseUrl}`;
-    }
-
-    port = process.env.VUE_APP_API_PORT
-      ? `:${process.env.VUE_APP_API_PORT}`
-      : ':3000';
+  if (newBasePath) {
+    return newBasePath;
   }
 
-  return `${baseUrl}${port}/api`;
+  const baseUrl = process.env.HOST || process.env.BASE_URL;
+
+  if (process.env.HOST && process.env.PORT) {
+    return `http://${baseUrl}:${process.env.PORT}/api`;
+  }
+
+  // TODO: Rethink how this behaves in Production. Maybe use the NODE_ENV Flag.
+
+  return `${baseUrl}api`;
 }
