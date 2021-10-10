@@ -10,10 +10,9 @@ export const useUserStore = defineStore({
 
   actions: {
     async loadAllUsers() {
-      console.log('Loading all users');
       const response = await useAxios().get('/users');
       this.users = response.data.map((user: any) => {
-        // Ugly mapping for the data table
+        // Ugly mapping for the data table just for the example
         user.key = user.id;
         return user;
       });
