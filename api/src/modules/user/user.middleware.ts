@@ -6,11 +6,17 @@ class UserMiddleware {
     res: express.Response,
     next: express.NextFunction
   ) {
-    if (req.body && req.body.email && req.body.password) {
+    if (
+      req.body &&
+      req.body.email &&
+      req.body.password &&
+      req.body.email &&
+      req.body.role
+    ) {
       next();
     } else {
       res.status(400).send({
-        error: `Missing required fields email and password`,
+        error: `Missing required fields`,
       });
     }
   }

@@ -1,15 +1,18 @@
 import { Application, Router } from 'express';
 import UserController from './user.controller';
 import UserMiddleware from './user.middleware';
+import UserService from './user.service';
 
 export default (app: Application): void => {
   const router = Router();
-  router.get('/users', UserController.listAllUsers);
-  router.post('/users', UserController.createUser);
+  const userController = new UserController(new UserService());
+  router.get('/user', userController.listAllUsers);
+  router.post('/user', userController.createUser);
   router.delete(
-    '/users/:userId',
+    '/user/:userId',
+    UserMiddleware.validateRequiredUserBodyFields,
     UserMiddleware.extractUserId,
-    UserController.deleteUser
+    userController.deleteUser
   );
   app.use('/api', router);
 };

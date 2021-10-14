@@ -10,7 +10,7 @@ export const useUserStore = defineStore({
 
   actions: {
     async loadAllUsers() {
-      const response = await useAxios().get('/users');
+      const response = await useAxios().get('/user');
       this.users = response.data.map((user: any) => {
         // Ugly mapping for the data table just for the example
         user.key = user.id;
@@ -20,13 +20,13 @@ export const useUserStore = defineStore({
 
     async createUser(user: User) {
       await useAxios()
-        .post('/users', user)
+        .post('/user', user)
         .then(() => this.users.push(user));
     },
 
     async deleteUser(userKey: string) {
       await useAxios()
-        .delete('/users/' + userKey)
+        .delete('/user/' + userKey)
         .then(
           () => (this.users = this.users.filter((user) => user.key != userKey))
         );

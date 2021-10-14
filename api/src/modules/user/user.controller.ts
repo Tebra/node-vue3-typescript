@@ -1,10 +1,17 @@
 import { Request, Response } from 'express';
 import { SequelizeScopeError } from 'sequelize/types';
 import { User } from './user.model';
+import UserService from './user.service';
 
 class UserController {
-  listAllUsers(req: Request, res: Response) {
-    User.findAll()
+  userService: UserService;
+  constructor(service: UserService) {
+    this.userService = service;
+  }
+
+  listAllUsers(req: Request, res: Response): Promise<any> {
+    return this.userService
+      .findAll()
       .then((users: Array<User>) => res.send(users))
       .catch(() => {
         res.status(500).send({
@@ -13,7 +20,7 @@ class UserController {
       });
   }
 
-  createUser(req: Request, res: Response) {
+  createUser(req: Request, res: Response): Promise<any> {
     const data: User = req.body;
     const user = new User({
       username: data.username,
@@ -23,8 +30,8 @@ class UserController {
       fullName: data.fullName,
     });
 
-    user
-      .save()
+    return this.userService
+      .create(user)
       .then((user) => res.status(200).json(user.id))
       .catch((err: SequelizeScopeError) => {
         res.status(500).json({
@@ -34,13 +41,9 @@ class UserController {
       });
   }
 
-  deleteUser(req: Request, res: Response) {
+  deleteUser(req: Request, res: Response): Promise<any> {
     const userId = req.body.id;
-    User.destroy({
-      where: {
-        id: userId,
-      },
-    }).then(() =>
+    return this.userService.delete(userId).then(() =>
       res.status(200).json({
         message: 'User with id ' + userId + 'removed',
       })
@@ -48,4 +51,4 @@ class UserController {
   }
 }
 
-export default new UserController();
+export default UserController;

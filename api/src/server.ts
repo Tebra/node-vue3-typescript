@@ -5,7 +5,7 @@ import cors from 'cors';
 import path from 'path';
 import compression from 'compression';
 import express from 'express';
-import { hidePoweredBy, noSniff, xssFilter } from 'helmet';
+import helmet from 'helmet';
 import registerRoutes from './routes';
 import { initializedSequelize } from './infrastructure/infrastructure.sequelize';
 
@@ -30,9 +30,7 @@ class Server {
   }
 
   setupHelmet() {
-    this.app.use(hidePoweredBy());
-    this.app.use(noSniff());
-    this.app.use(xssFilter());
+    this.app.use(helmet());
   }
 
   setupWinstonLogger() {
@@ -86,7 +84,7 @@ class Server {
     this.setupDatabase();
 
     this.server.listen(this.port, () => {
-      console.log(`Server running at http://localhost:${this.port}`);
+      console.log(`Server running at port ${this.port}`);
     });
   }
 }
