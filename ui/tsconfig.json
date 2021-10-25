@@ -19,6 +19,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["src/tests/**/*", "node_modules"]
+  "include": ["src/**/*.ts", "src/**/*.vue", "src/tests/**/*.spec.ts"],
+  "exclude": ["node_modules"]
 }

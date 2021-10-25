@@ -11,7 +11,7 @@
   "scripts": {
     "build": "vue-cli-service build --dest ../build/public",
     "serve": "vue-cli-service serve --port 8080 --open",
-    "test": "vue-cli-service test:unit ./src/tests/**/*.ts",
+    "test": "vue-cli-service test:unit src/tests/**/*.ts",
     "format": "prettier --write ./src",
     "lint": "vue-cli-service lint"
   },
@@ -22,7 +22,6 @@
     "reflect-metadata": "^0.1.13",
     "register-service-worker": "^1.7.1",
     "vue": "^3.0.0",
-    "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {

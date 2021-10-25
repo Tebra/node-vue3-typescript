@@ -1,13 +1,7 @@
 import { expect } from 'chai';
-import { shallowMount } from '@vue/test-utils';
-import HelloWorld from '@/components/HelloWorld.vue';
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'This should pass';
-    const wrapper = shallowMount(HelloWorld, {
-      props: { msg },
-    });
-    expect(wrapper.text()).to.include(msg);
+describe('Example test', () => {
+  it('should be true', () => {
+    expect(true).to.be.equal(true);
   });
 });

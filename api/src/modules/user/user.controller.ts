@@ -12,9 +12,9 @@ class UserController {
   listAllUsers(req: Request, res: Response): Promise<any> {
     return this.userService
       .findAll()
-      .then((users: Array<User>) => res.send(users))
+      .then((users: Array<User>) => res.json(users))
       .catch(() => {
-        res.status(500).send({
+        res.status(500).json({
           message: `Error retrieving all users`,
         });
       });

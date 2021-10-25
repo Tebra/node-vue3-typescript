@@ -6,9 +6,6 @@
     "type": "git",
     "url": "git+https://github.com/Tebra/node-vue3-typescript.git"
   },
-  "engines": {
-    "node": "12.x"
-  },
   "author": "Rijad Zuzo",
   "license": "MIT",
   "bugs": {
@@ -18,7 +15,7 @@
   "scripts": {
     "build": "rimraf ../build && tsc",
     "serve": "nodemon",
-    "test": "mocha -r ts-node/register ./src/tests/**/*.ts",
+    "test": "mocha -r ts-node/register \"src/tests/**/*.spec.ts\"",
     "format": "prettier --write ./src"
   },
   "dependencies": {
