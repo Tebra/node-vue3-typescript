@@ -14,15 +14,16 @@ module.exports = {
     config.entry("app").clear().add("./src/main.ts").end();
     config.resolve.alias.set("@", path.join(__dirname, "./src"));
 
-    // config for mjs modules loading
-    config.module
-      .rule("mjs$")
-      .test(/\.mjs$/)
-      .include.add(/node_modules/)
-      .end()
-      .type("javascript/auto");
-
     let rootEnvPath = path.resolve(__dirname, "../.env");
     config.plugin("dotenv").use(Dotenv, [{ path: rootEnvPath, expand: true }]);
+
+    if (
+      process.env.NODE_ENV === "test" ||
+      process.env.NODE_ENV === "production"
+    ) {
+      const scssRule = config.module.rule("scss");
+      scssRule.uses.clear();
+      scssRule.use("null-loader").loader("null-loader");
+    }
   },
 };

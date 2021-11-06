@@ -22,10 +22,10 @@ const initializeSequelize = () => {
   if (!sequelize && isConnectionUrlDefined) {
     sequelize = new Sequelize(process.env.DATABASE_URL as string, {
       pool: {
-        max: 5,
+        max: 100,
         min: 0,
-        acquire: 30000,
-        idle: 10000,
+        acquire: 1000000,
+        idle: 200000,
       },
       models: [User],
     });
@@ -38,10 +38,10 @@ const initializeSequelize = () => {
         host: process.env.DATABASE_HOST,
         dialect: 'postgres',
         pool: {
-          max: 5,
+          max: 100,
           min: 0,
-          acquire: 30000,
-          idle: 10000,
+          acquire: 1000000,
+          idle: 200000,
         },
         models: [User],
       }

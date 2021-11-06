@@ -1,6 +1,11 @@
 <template>
   <h2>Create a new user</h2>
-  <n-form class="form" :model="user" :label-align="formOption.labelAlignment">
+  <n-form
+    class="form"
+    :model="user"
+    :label-align="formOption.labelAlignment"
+    :rules="rules"
+  >
     <n-form-item label="Full Name" path="user.fullName">
       <n-input v-model:value="user.fullName" placeholder="Input Full Name" />
     </n-form-item>
@@ -62,6 +67,16 @@ export default {
       { value: 3, label: "User" },
     ];
 
+    const rules = {
+      user: {
+        email: {
+          required: true,
+          message: "Please input your name",
+          trigger: "blur",
+        },
+      },
+    };
+
     const store = useUserStore();
 
     function submitUserForm() {
@@ -73,6 +88,7 @@ export default {
       roles,
       formOption,
       submitUserForm,
+      rules,
     };
   },
 };
