@@ -7,7 +7,7 @@
     "url": "git+https://github.com/Tebra/node-vue3-typescript.git"
   },
   "engines": {
-    "node": "12.x"
+    "node": "15.x"
   },
   "workspaces": [
     "api",
@@ -36,11 +36,11 @@
     "test": "npm-run-all test:api test:ui",
     "build:api": "yarn workspace api build",
     "build:ui": "yarn workspace ui build",
-    "build": "npm-run-all build:api build:ui",
+    "build": "npm-run-all test:api test:ui build:api build:ui",
     "format:api": "yarn workspace api format",
     "format:ui": "yarn workspace ui build",
     "format": "npm-run-all format:api format:ui",
-    "start": "node -r dotenv/config ./build/server.js",
+    "start": "node -r dotenv/config --optimize_for_size --max_old_space_size=460 --gc_interval=100 ./build/server.js",
     "lint": "yarn workspace ui lint",
     "trace": "tsc --traceResolution"
   },

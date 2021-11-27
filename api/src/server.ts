@@ -5,10 +5,9 @@ import cors from 'cors';
 import path from 'path';
 import compression from 'compression';
 import express from 'express';
-import { hidePoweredBy, noSniff, xssFilter } from 'helmet';
+import helmet from 'helmet';
 import registerRoutes from './routes';
 import { initializedSequelize } from './infrastructure/infrastructure.sequelize';
-import dbSeed from './infrastructure/infrastructure.seed';
 
 class Server {
   app: express.Application;
@@ -16,7 +15,7 @@ class Server {
 
   // port is now available to the Node.js runtime
   // as if it were an environment variable
-  port = process.env.PORT || 3000; //process.env.SERVER_PORT;
+  port = process.env.PORT || 3000;
 
   constructor() {
     this.app = express();
@@ -26,14 +25,12 @@ class Server {
   setupExpress() {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
-    this.app.use(cors());
+    this.app.use(cors({ origin: '*' }));
     this.app.use(compression());
   }
 
   setupHelmet() {
-    this.app.use(hidePoweredBy());
-    this.app.use(noSniff());
-    this.app.use(xssFilter());
+    this.app.use(helmet());
   }
 
   setupWinstonLogger() {
@@ -74,7 +71,7 @@ class Server {
 
   setupDatabase() {
     initializedSequelize.sync().then(async () => {
-      console.log('Connection established');
+      console.log('Database connection established');
     });
   }
 
@@ -83,9 +80,11 @@ class Server {
     this.setupWinstonLogger();
     this.setupRoutes();
     this.setupFrontendServing();
+    this.setupHelmet();
+    this.setupDatabase();
 
     this.server.listen(this.port, () => {
-      console.log(`Server running at http://localhost:${this.port}`);
+      console.log(`Server running at port ${this.port}`);
     });
   }
 }

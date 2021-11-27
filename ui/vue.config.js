@@ -1,5 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require("path");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   chainWebpack: (config) => {
@@ -11,6 +13,9 @@ module.exports = {
 
     config.entry("app").clear().add("./src/main.ts").end();
     config.resolve.alias.set("@", path.join(__dirname, "./src"));
+
+    let rootEnvPath = path.resolve(__dirname, "../.env");
+    config.plugin("dotenv").use(Dotenv, [{ path: rootEnvPath, expand: true }]);
 
     // config for mjs modules loading
     config.module

@@ -1,16 +1,22 @@
 import express from 'express';
 
-class UsersMiddleware {
+class UserMiddleware {
   async validateRequiredUserBodyFields(
     req: express.Request,
     res: express.Response,
     next: express.NextFunction
   ) {
-    if (req.body && req.body.email && req.body.password) {
+    if (
+      req.body &&
+      req.body.username &&
+      req.body.password &&
+      req.body.email &&
+      req.body.role
+    ) {
       next();
     } else {
       res.status(400).send({
-        error: `Missing required fields email and password`,
+        error: `Missing required fields`,
       });
     }
   }
@@ -25,4 +31,4 @@ class UsersMiddleware {
   }
 }
 
-export default new UsersMiddleware();
+export default new UserMiddleware();
