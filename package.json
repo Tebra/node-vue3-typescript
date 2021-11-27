@@ -7,7 +7,7 @@
     "url": "git+https://github.com/Tebra/node-vue3-typescript.git"
   },
   "engines": {
-    "node": "14.x"
+    "node": "15.x"
   },
   "workspaces": [
     "api",

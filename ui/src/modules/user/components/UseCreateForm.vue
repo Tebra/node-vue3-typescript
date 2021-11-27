@@ -67,11 +67,13 @@ export default {
       { value: 3, label: "User" },
     ];
 
+    // TODO: Properly setup validation rules, just an example here..
+
     const rules = {
       user: {
         email: {
           required: true,
-          message: "Please input your name",
+          message: "Please input your email",
           trigger: "blur",
         },
       },

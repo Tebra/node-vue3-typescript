@@ -28,7 +28,7 @@ export const useUserStore = defineStore({
       await useAxios()
         .delete('/user/' + userKey)
         .then(
-          () => (this.users = this.users.filter((user) => user.key != userKey))
+          () => (this.users = this.users.filter((user) => user.key !== userKey))
         );
     },
   },

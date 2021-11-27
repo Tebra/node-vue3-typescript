@@ -7,12 +7,13 @@ export default (app: Application): void => {
   const router = Router();
   const userController = new UserController(new UserService());
   router.get('/user', (req, res) => userController.listAllUsers(req, res));
-  router.post('/user', (req, res) => userController.createUser(req, res));
-  router.delete(
-    '/user/:userId',
+  router.post(
+    '/user',
     UserMiddleware.validateRequiredUserBodyFields,
-    UserMiddleware.extractUserId,
-    (req, res) => userController.deleteUser(req, res)
+    (req, res) => userController.createUser(req, res)
+  );
+  router.delete('/user/:userId', UserMiddleware.extractUserId, (req, res) =>
+    userController.deleteUser(req, res)
   );
   app.use('/api', router);
 };

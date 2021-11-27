@@ -17,13 +17,12 @@ module.exports = {
     let rootEnvPath = path.resolve(__dirname, "../.env");
     config.plugin("dotenv").use(Dotenv, [{ path: rootEnvPath, expand: true }]);
 
-    if (
-      process.env.NODE_ENV === "test" ||
-      process.env.NODE_ENV === "production"
-    ) {
-      const scssRule = config.module.rule("scss");
-      scssRule.uses.clear();
-      scssRule.use("null-loader").loader("null-loader");
-    }
+    // config for mjs modules loading
+    config.module
+      .rule("mjs$")
+      .test(/\.mjs$/)
+      .include.add(/node_modules/)
+      .end()
+      .type("javascript/auto");
   },
 };

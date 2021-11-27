@@ -8,7 +8,7 @@ class UserMiddleware {
   ) {
     if (
       req.body &&
-      req.body.email &&
+      req.body.username &&
       req.body.password &&
       req.body.email &&
       req.body.role
